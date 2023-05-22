@@ -12,35 +12,43 @@ const messageChannel = consumer.subscriptions.create("MessageChannel", {
   received(data) {
     const messageDisplay = document.querySelector('#message-display')
     messageDisplay.insertAdjacentHTML('beforeend', this.template(data))
+    clearInput()
   },
 
   template(data) {
+    console.log(data)
     return `<article class="message">
-              <div class="message-header">
-                <p>${data.user.email}</p>
-              </div>
               <div class="message-body">
-                <p>${data.message.body}</p>
+                <p></p>
+                <p>
+                  <strong>${data.user.email}:</strong> ${data.body}
+                </p>
               </div>
             </article>`
   }
 });
 
-// turbo:load listener ensure DOM is loaded before running JS
-document.addEventListener("turbo:load", () => {
-  let form = document.querySelector('#message-form')
-  if(form) {
-    form.addEventListener('submit', (e) => {
-      //stop page re-rendering on submit click
-      e.preventDefault()
+function clearInput() {
+  let messageInput = document.querySelector('#message-input')
+  messageInput.value = '';
+}
 
-      let messageInput = document.querySelector('#message-input')
-      if(messageInput.value == '') return;
-      const message = {
-        body: messageInput.value
-      }
-      messageChannel.send({message: message})
-      messageInput.value = '';
-    })
-  }
-})
+// JS to use when not using message model
+// turbo:load listener ensure DOM is loaded before running JS
+// document.addEventListener("turbo:load", () => {
+//   let form = document.querySelector('#message-form')
+//   if(form) {
+//     form.addEventListener('submit', (e) => {
+//       //stop page re-rendering on submit click
+//       e.preventDefault()
+
+//       let messageInput = document.querySelector('#message-input')
+//       if(messageInput.value == '') return;
+//       const message = {
+//         body: messageInput.value
+//       }
+//       messageChannel.send({message: message})
+//       messageInput.value = '';
+//     })
+//   }
+// })
