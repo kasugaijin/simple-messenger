@@ -34,12 +34,13 @@ document.addEventListener("turbo:load", () => {
       //stop page re-rendering on submit click
       e.preventDefault()
 
-      let messageInput = document.querySelector('#message-input').value
-      if(messageInput == '') return;
+      let messageInput = document.querySelector('#message-input')
+      if(messageInput.value == '') return;
       const message = {
-        body: messageInput
+        body: messageInput.value
       }
       messageChannel.send({message: message})
+      messageInput.value = '';
     })
   }
 })
