@@ -1,5 +1,15 @@
 <div>
   <div id="message-display">
+    <% @messages.each do |message| %>
+      <article class="message">
+        <div class="message-header">
+          <%= message.user.email %>
+        </div>
+        <div class="message-body">
+          <%= message.body %>
+        </div>
+      </article>
+    <% end %>
   </div>
   <div id="message-form">
     <%= form_with model: @message, local: false do |f| %>
@@ -12,7 +22,6 @@
         </div>
       </div>
     <% end %>
-
     <%# HTML form for when not using message model %>
     <%# <form action="" id="message-form">
       <div class="field has-addons">
