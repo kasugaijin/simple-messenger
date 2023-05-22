@@ -19,7 +19,6 @@ const messageChannel = consumer.subscriptions.create("MessageChannel", {
     console.log(data)
     return `<article class="message">
               <div class="message-body">
-                <p></p>
                 <p>
                   <strong>${data.user.email}:</strong> ${data.body}
                 </p>
