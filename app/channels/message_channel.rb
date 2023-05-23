@@ -8,7 +8,9 @@ class MessageChannel < ApplicationCable::Channel
   end
 
   def receive(data)
-    data['user'] = current_user
-    ActionCable.server.broadcast('message', data)
+    # Do not need to rebroadcast received data if using the model because
+    # broadcast is handled on the messages#create action
+    # data['user'] = current_user
+    # ActionCable.server.broadcast('message', data)
   end
 end
