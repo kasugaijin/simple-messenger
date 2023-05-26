@@ -1,6 +1,6 @@
 # README
 
-This simple Rails chat application uses websocket and the ActionCable library. This was built to use websockets in two different ways. 
+This simple Rails 7 chat application uses websocket and the ActionCable library. This was built to practice using websockets in two different ways. 
 
 The first method uses clientside JS (consumer object) to send data (a message) over the cable, which is received by the Message channel on the back end and rebroadcasted to all subscribers on that channel over the cable. The data is received by the clientside JS consumer object and appended to the chat window. This allows users to send and receive messages seamingly instantaneously without any need for page refresh. Messages are not persisted or altered server side.
 
